@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\EventSphere",
+    "\\EventSphere\\Controllers",
+    "\\EventSphere\\Models",
+    "\\EventSphere\\ViewModels",
+    "\\frontend\\src",
+    "\\frontend\\src\\components",
+    "\\frontend\\src\\pages",
+    "\\frontend\\src\\services",
+    "\\frontend\\src\\types"
+  ],
+  "SelectedNode": "\\EventSphere\\Controllers\\OrganizationsController.cs",
+  "PreviewInSolutionExplorer": false
+}
