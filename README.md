@@ -74,7 +74,7 @@ npm install
 npm run dev
 ```
 
-- The frontend will run on: http://localhost:5173
+- The frontend will run on: http://localhost:8080
 - API requests are configured to target the backend at http://localhost:5172
 
 ---
