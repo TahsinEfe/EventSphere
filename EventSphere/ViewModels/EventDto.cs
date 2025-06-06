@@ -11,7 +11,6 @@
     public int? MaxAttendees { get; set; }
     public bool IsPublic { get; set; }
     public DateTime? RegistrationDeadline { get; set; }
-    public int AddressId { get; set; }
     public string? Location { get; set; }
     public string? ImageUrl { get; set; }
     public string? Description { get; set; }

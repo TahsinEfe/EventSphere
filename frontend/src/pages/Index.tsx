@@ -9,11 +9,16 @@ import EventCard from "@/components/EventCard";
 import { EventDto } from "@/types/EventDto";
 import { Badge } from "@/components/ui/badge";
 import { getEventTypeLabel } from "@/data/mockData";
+import EventTypeCarousel from "../components/EventTypeCarousel";
+import { EventTypesDto } from "../types/EventTypesDto";
+import axios from "axios";
 
 const Index = () => {
     const [featuredEvents, setFeaturedEvents] = useState<EventDto[]>([]);
     const [upcomingEvents, setUpcomingEvents] = useState<EventDto[]>([]);
     const [uniqueEventTypes, setUniqueEventTypes] = useState<EventDto[]>([]);
+    const [eventTypes, setEventTypes] = useState<EventTypesDto[]>([]);
+
 
     useEffect(() => {
         const fetchEvents = async () => {
@@ -45,6 +50,19 @@ const Index = () => {
         };
 
         fetchEvents();
+    }, []);
+
+    useEffect(() => {
+        const fetchEventTypes = async () => {
+            try {
+                const res = await axios.get("/api/EventTypes");
+                setEventTypes(res.data);
+            } catch (err) {
+                console.error("Failed to fetch event types", err);
+            }
+        };
+
+        fetchEventTypes();
     }, []);
 
     return (
@@ -149,28 +167,11 @@ const Index = () => {
                         </Link>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {uniqueEventTypes.map((event) => (
-                            <div key={event.eventId} className="group relative">
-                                <Link to={`/events/${event.eventId}`} className="block">
-                                    <div className="aspect-[3/4] overflow-hidden rounded-lg">
-                                        <img
-                                            src={event.imageUrl || "/placeholder.svg"}
-                                            alt={event.name}
-                                            className="h-full w-full object-cover transition-transform group-hover:scale-105 duration-500"
-                                        />
-                                    </div>
-                                    <div className="mt-3">
-                                        <Badge variant="secondary">
-                                            {getEventTypeLabel(event.eventTypeId)}
-                                        </Badge>
-                                    </div>
-                                </Link>
-                            </div>
-                        ))}
-                    </div>
+                    {/* Carousel */}
+                    <EventTypeCarousel eventTypes={eventTypes} />
                 </div>
             </section>
+
 
             <Footer />
         </div>

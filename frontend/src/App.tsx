@@ -26,6 +26,9 @@ import AddressListPage from "./pages/AddressListPage";
 import AddressCreatePage from "./pages/AddressCreatePage";
 import AddressEditPage from "./pages/AddressEditPage";
 import OrganizationsDashboard from "./pages/OrganizationsDasboard"; 
+import UserDashboard from "./pages/UserDashboard";
+import EventsDashboard from "./pages/EventsDashboard";
+
 
 const queryClient = new QueryClient();
 
@@ -56,6 +59,9 @@ const App = () => (
                     <Route path="/addresses" element={<AddressListPage />} />
                     <Route path="/addresses/create" element={<AddressCreatePage />} />
                     <Route path="/addresses/edit/:id" element={<AddressEditPage />} />
+                    <Route path="/user-dashboard" element={<UserDashboard />} />
+                    <Route path="/events-dashboard" element={<EventsDashboard />} />
+
 
                     {/* ✅ NEW ROUTE */}
                     <Route path="/organizations" element={<OrganizationsDashboard />} />

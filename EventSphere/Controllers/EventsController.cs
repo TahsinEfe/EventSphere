@@ -24,8 +24,8 @@ namespace EventSphere.Controllers
                 .Include(e => e.EventType)
                 .Include(e => e.EventStatus)
                 .Include(e => e.Organization)
-                .Include(e => e.Address)
-                .ToListAsync(); // 👉 önce veritabanından çek
+                // .Include(e => e.Address) // <-- GEREK YOK, ÇIKARILDI!
+                .ToListAsync();
 
             var dtoList = events.Select(e => new EventDto
             {
@@ -40,24 +40,20 @@ namespace EventSphere.Controllers
                 MaxAttendees = e.MaxAttendees,
                 IsPublic = e.IsPublic,
                 RegistrationDeadline = e.RegistrationDeadline,
-                AddressId = e.AddressId,
-                Location = e.Address?.Street ?? "Bilinmiyor",
                 ImageUrl = e.ImageUrl,
-                Description = e.Description,
-                City = e.Address?.City ?? "Bilinmiyor",
-                Country = e.Address?.Country ?? "Bilinmiyor"
+                Description = e.Description
+                // Location, City, Country, vb. YOK!
             }).ToList();
 
             return Ok(dtoList);
         }
-
 
         // GET: api/events/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetEvent(int id)
         {
             var ev = await _context.Events
-                .Include(e => e.Address)
+                //.Include(e => e.Address) // <-- ÇIKARILDI!
                 .FirstOrDefaultAsync(e => e.EventId == id);
 
             if (ev == null)
@@ -76,47 +72,76 @@ namespace EventSphere.Controllers
                 MaxAttendees = ev.MaxAttendees,
                 IsPublic = ev.IsPublic,
                 RegistrationDeadline = ev.RegistrationDeadline,
-                AddressId = ev.AddressId,
-                Location = ev.Address?.Street ?? "Bilinmiyor",
                 ImageUrl = ev.ImageUrl,
-                Description = ev.Description,
-                City = ev.Address?.City ?? "Bilinmiyor",
-                Country = ev.Address?.Country ?? "Bilinmiyor"
+                Description = ev.Description
+                // Location, City, Country, vb. YOK!
             };
 
             return Ok(dto);
         }
 
-
         // POST: api/events
         [HttpPost]
-        public async Task<IActionResult> CreateEvent(EventDto dto)
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Create([FromForm] EventCreateRequest model)
         {
-            if (!await HasAccess(dto.OrganizationId, dto.OrganizerUserId))
+            if (!await HasAccess(model.OrganizationId, model.OrganizerUserId))
                 return StatusCode(403, "Yetkiniz yok.");
+
+            // Tarih parse işlemleri
+            if (!DateTime.TryParse(model.StartDateTime.ToString(), out DateTime parsedStartDate))
+                return BadRequest("Geçersiz başlangıç tarihi.");
+
+            if (!DateTime.TryParse(model.EndDateTime.ToString(), out DateTime parsedEndDate))
+                return BadRequest("Geçersiz bitiş tarihi.");
+
+            DateTime? parsedDeadline = null;
+            if (model.RegistrationDeadline != null)
+            {
+                if (!DateTime.TryParse(model.RegistrationDeadline.ToString(), out DateTime tempDeadline))
+                    return BadRequest("Geçersiz kayıt bitiş tarihi.");
+                parsedDeadline = tempDeadline;
+            }
+
+            // Görsel dosyasını kaydetme
+            string savedFileName = null;
+            if (model.ImageFile != null && model.ImageFile.Length > 0)
+            {
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
+                if (!Directory.Exists(uploadsFolder))
+                    Directory.CreateDirectory(uploadsFolder);
+
+                var uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(model.ImageFile.FileName);
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await model.ImageFile.CopyToAsync(stream);
+                }
+
+                savedFileName = "/uploads/" + uniqueFileName;
+            }
 
             var ev = new Event
             {
-                OrganizationId = dto.OrganizationId,
-                Name = dto.Name,
-                StartDateTime = dto.StartDateTime,
-                EndDateTime = dto.EndDateTime,
-                EventTypeId = dto.EventTypeId,
-                EventStatusId = dto.EventStatusId,
-                OrganizerUserId = dto.OrganizerUserId,
-                MaxAttendees = dto.MaxAttendees,
-                IsPublic = dto.IsPublic,
-                RegistrationDeadline = dto.RegistrationDeadline,
-                AddressId = dto.AddressId,
-                ImageUrl = dto.ImageUrl,
-                Description = dto.Description
+                OrganizationId = model.OrganizationId,
+                Name = model.Name,
+                StartDateTime = parsedStartDate,
+                EndDateTime = parsedEndDate,
+                EventTypeId = model.EventTypeId,
+                EventStatusId = model.EventStatusId,
+                OrganizerUserId = model.OrganizerUserId,
+                MaxAttendees = model.MaxAttendees,
+                IsPublic = model.IsPublic,
+                RegistrationDeadline = parsedDeadline,
+                ImageUrl = savedFileName,
+                Description = model.Description
             };
 
             _context.Events.Add(ev);
             await _context.SaveChangesAsync();
 
-            dto.EventId = ev.EventId;
-            return CreatedAtAction(nameof(GetEvent), new { id = ev.EventId }, dto);
+            return CreatedAtAction(nameof(GetEvent), new { id = ev.EventId }, new { id = ev.EventId });
         }
 
         // PUT: api/events/5
@@ -142,7 +167,6 @@ namespace EventSphere.Controllers
             ev.MaxAttendees = dto.MaxAttendees;
             ev.IsPublic = dto.IsPublic;
             ev.RegistrationDeadline = dto.RegistrationDeadline;
-            ev.AddressId = dto.AddressId;
             ev.ImageUrl = dto.ImageUrl;
             ev.Description = dto.Description;
 

@@ -47,11 +47,20 @@ namespace EventSphere.Controllers
 
         // POST: api/notifications?userId=1
         [HttpPost]
-        public async Task<IActionResult> Create(Notification notification, [FromQuery] int userId)
+        public async Task<IActionResult> Create([FromBody] CreateNotificationDto dto, [FromQuery] int userId)
         {
-            notification.UserId = userId;
-            notification.CreatedDate = DateTime.Now;
-            notification.IsRead = false;
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null)
+                return NotFound("Kullanıcı bulunamadı.");
+
+            var notification = new Notification
+            {
+                Title = dto.Title,
+                Message = dto.Message,
+                UserId = userId,
+                CreatedDate = DateTime.Now,
+                IsRead = false
+            };
 
             _context.Notifications.Add(notification);
             await _context.SaveChangesAsync();
@@ -59,40 +68,55 @@ namespace EventSphere.Controllers
             return CreatedAtAction(nameof(GetById), new { id = notification.NotificationId }, notification);
         }
 
+
         // PUT: api/notifications/5?userId=1
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, Notification notification, [FromQuery] int userId)
+        public async Task<IActionResult> Update(long id, [FromBody] UpdateNotificationDto dto, [FromQuery] int userId)
         {
-            if (id != notification.NotificationId)
+            if (id != dto.NotificationId)
                 return BadRequest();
 
-            var original = await _context.Notifications.AsNoTracking().FirstOrDefaultAsync(n => n.NotificationId == id);
-            if (original == null) return NotFound();
+            var notification = await _context.Notifications.FindAsync(id);
+            if (notification == null)
+                return NotFound();
 
-            if (original.UserId != userId)
-                return Forbid("Sadece kendi bildirimlerinizi güncelleyebilirsiniz.");
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null)
+                return Unauthorized("Kullanıcı bulunamadı.");
 
-            _context.Entry(notification).State = EntityState.Modified;
+            if (notification.UserId != userId && user.RoleId != 1)
+                return Unauthorized("Sadece kendi bildiriminizi veya admin yetkiniz varsa düzenleyebilirsiniz.");
+
+            notification.IsRead = dto.IsRead;
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
+
+
         // DELETE: api/notifications/5?userId=1
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id, [FromQuery] int userId)
+        public async Task<IActionResult> Delete(long id, [FromQuery] int userId)
         {
             var notification = await _context.Notifications.FindAsync(id);
-            if (notification == null) return NotFound();
+            if (notification == null)
+                return NotFound();
 
             var user = await _context.Users.FindAsync(userId);
-            if (notification.UserId != userId && (user == null || user.RoleId != 1))
-                return Forbid("Sadece admin ya da bildirimin sahibi silebilir.");
+            if (user == null)
+                return Unauthorized("Kullanıcı bulunamadı.");
+
+            // Rolü kontrol et (admin = 1)
+            if (notification.UserId != userId && user.RoleId != 1)
+                return StatusCode(403, "Sadece kendi bildiriminizi veya admin olarak silebilirsiniz.");
 
             _context.Notifications.Remove(notification);
             await _context.SaveChangesAsync();
 
-            return NoContent(); 
+            return NoContent();
         }
+
+
     }
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
     Card, CardContent, CardDescription, CardHeader, CardTitle,
@@ -6,12 +6,10 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import {
-    Calendar, Clock, Ticket, User, Bell, Plus, Edit, Building,
+    Calendar, Clock, Ticket, User, Bell, Plus, Edit, Building, ArrowLeft,
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { formatDate } from "@/data/mockData";
-import { EventRegistration } from "@/types/EventRegistration";
 import { NotificationDto } from "@/types/NotificationDto";
 import { LoginResponse } from "@/services/auth";
 import { AuthAPI } from "@/services/auth";
@@ -21,7 +19,12 @@ import { EventDto } from "@/types/EventDto";
 import { EventsAPI } from "@/services/EventsAPI";
 import { OrganizationsAPI } from "@/services/OrganizationsAPI";
 import { OrganizationDto } from "@/types/OrganizationDto";
-
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "../components/ui/dialog";
+import { Input } from "../components/ui/input";
+import { EventTypesAPI } from "@/services/EventTypesAPI";
+import api from "../services/api";
+import { EventTypesDto } from "../types/EventTypesDto";
+import { EventStatusesDto } from "../types/EventStatusesDto";
 
 const Dashboard = () => {
     const [activeTab, setActiveTab] = useState("upcoming");
@@ -31,11 +34,122 @@ const Dashboard = () => {
     const [registeredEvents, setRegisteredEvents] = useState<EventDto[]>([]);
     const [pastEvents, setPastEvents] = useState<EventDto[]>([]);
     const [organizations, setOrganizations] = useState<OrganizationDto[]>([]);
+    const [totalEventCount, setTotalEventCount] = useState(0);
+    const [newEventDialogOpen, setNewEventDialogOpen] = useState(false);
+    const [eventTypes, setEventTypes] = useState<EventTypesDto[]>([]);
+    const [allUsers, setAllUsers] = useState<{ userId: number; firstName: string; lastName: string }[]>([]);
+    const [eventStatuses, setEventStatuses] = useState<EventStatusesDto[]>([]);
+    const [addresses, setAddresses] = useState<{ addressId: number; street: string; city: string }[]>([]);
+
+    const [newEventForm, setNewEventForm] = useState<EventDto>({
+        organizationId: 1,
+        name: "",
+        startDateTime: "",
+        endDateTime: "",
+        eventTypeId: 1,
+        eventStatusId: 1,
+        organizerUserId: 1,
+        isPublic: true,
+        city: "",
+        country: "",
+        location: "",
+        addressId: 1,
+        imageUrl: "",
+        description: "",
+    });
+
+    const handleCreateNewEvent = async () => {
+        try {
+            const formData = new FormData();
+            formData.append("name", newEventForm.name);
+            formData.append("startDateTime", newEventForm.startDateTime);
+            formData.append("endDateTime", newEventForm.endDateTime);
+            formData.append("eventTypeId", String(newEventForm.eventTypeId));
+            formData.append("eventStatusId", String(newEventForm.eventStatusId));
+            formData.append("organizationId", String(newEventForm.organizationId));
+            formData.append("organizerUserId", String(newEventForm.organizerUserId));
+            formData.append("isPublic", String(newEventForm.isPublic));
+            formData.append("location", newEventForm.location || "");
+            formData.append("city", newEventForm.city || "");
+            formData.append("country", newEventForm.country || "");
+            formData.append("description", newEventForm.description);
+            formData.append("addressId", String(newEventForm.addressId));
+            if (newEventForm.imageUrl instanceof File) {
+                formData.append("imageFile", newEventForm.imageUrl);
+            }
+            if (newEventForm.maxAttendees != null)
+                formData.append("maxAttendees", String(newEventForm.maxAttendees));
+            if (newEventForm.registrationDeadline)
+                formData.append("registrationDeadline", newEventForm.registrationDeadline);
+
+            await api.post("/Events", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
+
+            setNewEventDialogOpen(false);
+            fetchAllEvents();
+        } catch (err) {
+            console.error("Create event error:", err);
+        }
+    };
+
+    useEffect(() => {
+        const fetchEventStatuses = async () => {
+            try {
+                const res = await api.get("/EventStatuses");
+                setEventStatuses(res.data);
+            } catch (err) {
+                console.error("Event status fetch error:", err);
+            }
+        };
+        fetchEventStatuses();
+    }, []);
+
+    useEffect(() => {
+        const fetchAddresses = async () => {
+            try {
+                const res = await api.get("/Addresses");
+                setAddresses(res.data);
+            } catch (err) {
+                console.error("Address fetch error:", err);
+            }
+        };
+
+        fetchAddresses();
+    }, []);
+
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                const res = await api.get("/Users");
+                setAllUsers(res.data);
+            } catch (err) {
+                console.error("Kullanıcılar alınamadı:", err);
+            }
+        };
+
+        fetchUsers();
+    }, []);
+
+    useEffect(() => {
+        const fetchEventTypes = async () => {
+            try {
+                const res = await api.get("/EventTypes");
+                setEventTypes(res.data);
+            } catch (err) {
+                console.error("Event types fetch error:", err);
+            }
+        };
+        fetchEventTypes();
+    }, []);
 
     useEffect(() => {
         const currentUser = AuthAPI.getCurrentUser();
         if (currentUser) {
             setUser(currentUser);
+            setNewEventForm(prev => ({ ...prev, organizerUserId: currentUser.userId }));
             fetchUserData(currentUser.userId);
         }
         fetchAllEvents();
@@ -54,18 +168,22 @@ const Dashboard = () => {
         }
     };
 
+
+    
+
+
     const fetchAllEvents = async () => {
         try {
             const res = await EventsAPI.getAll();
             const allEvents = Array.isArray(res.data) ? res.data : [];
             const now = new Date();
 
-            // Filter upcoming events (public events)
+            setTotalEventCount(allEvents.length);
+
             const upcoming = allEvents
                 .filter((e: EventDto) => new Date(e.startDateTime) > now)
                 .sort((a, b) => new Date(a.startDateTime).getTime() - new Date(b.startDateTime).getTime());
 
-            // Filter past events
             const past = allEvents
                 .filter((e: EventDto) => new Date(e.startDateTime) <= now)
                 .sort((a, b) => new Date(b.startDateTime).getTime() - new Date(a.startDateTime).getTime());
@@ -73,28 +191,19 @@ const Dashboard = () => {
             setUpcomingEvents(upcoming);
             setPastEvents(past);
 
-            // If user is logged in, fetch their registered events
             const currentUser = AuthAPI.getCurrentUser();
             if (currentUser) {
                 await fetchUserRegisteredEvents(currentUser.userId, allEvents);
             }
         } catch (err) {
             console.error("Event fetch error:", err);
-            setUpcomingEvents([]);
-            setPastEvents([]);
+            setTotalEventCount(0); 
         }
     };
 
+
     const fetchUserRegisteredEvents = async (userId: number, allEvents: EventDto[]) => {
         try {
-            // This would typically be a separate API call to get user's registered events
-            // For now, we'll use a placeholder - you'll need to implement this based on your API
-            // const registrations = await EventRegistrationAPI.getByUserId(userId);
-            // const userEventIds = registrations.data.map(r => r.eventId);
-            // const userEvents = allEvents.filter(e => userEventIds.includes(e.eventId));
-            // setRegisteredEvents(userEvents);
-
-            // Placeholder for now
             setRegisteredEvents([]);
         } catch (err) {
             console.error("User events fetch error:", err);
@@ -114,6 +223,14 @@ const Dashboard = () => {
 
     return (
         <div className="container mx-auto px-4 py-8">
+            <Button
+                variant="ghost"
+                className="mb-4 text-blue-600 hover:text-blue-800 flex items-center"
+                onClick={() => (window.location.href = "/")}
+            >
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Back to Home
+            </Button>
             <div className="flex flex-col md:flex-row gap-6">
                 {/* Sidebar */}
                 <div className="md:w-1/4">
@@ -140,23 +257,26 @@ const Dashboard = () => {
                             <div className="mt-8">
                                 <h3 className="font-medium mb-3">Dashboard</h3>
                                 <nav className="space-y-2">
-                                    <Button variant="ghost" className="w-full justify-start">
-                                        <Ticket className="mr-2 h-4 w-4" />
-                                        My Events
-                                        <Badge className="ml-auto">
-                                            {registeredEvents.length}
-                                        </Badge>
-                                    </Button>
+                                    <Link to="/events-dashboard">
+                                        <Button variant="ghost" className="w-full justify-start">
+                                            <Ticket className="mr-2 h-4 w-4" />
+                                            My Events
+                                            <Badge className="ml-auto">
+                                                {totalEventCount}
+                                            </Badge>
+                                        </Button>
+                                    </Link>
+
                                     <Link to="/organizations">
                                         <Button variant="ghost" className="w-full justify-start">
                                             <Building className="mr-2 h-4 w-4" />
                                             Organizations
                                         </Button>
                                     </Link>
-                                    <Link to="/edit-profile">
+                                    <Link to="/user-dashboard">
                                         <Button variant="ghost" className="w-full justify-start">
                                             <User className="mr-2 h-4 w-4" />
-                                            Profile
+                                            Users
                                         </Button>
                                     </Link>
                                     
@@ -174,17 +294,164 @@ const Dashboard = () => {
                         <div className="flex justify-between items-center mb-4">
                             <TabsList>
                                 <TabsTrigger value="upcoming">Upcoming Events</TabsTrigger>
-                                <TabsTrigger value="registered">My Events</TabsTrigger>
                                 <TabsTrigger value="past">Past Events</TabsTrigger>
                                 <TabsTrigger value="notifications">Notifications</TabsTrigger>
                             </TabsList>
 
-                            <Link to="/events">
-                                <Button size="sm">
-                                    <Plus className="mr-2 h-4 w-4" />
-                                    Find Events
-                                </Button>
-                            </Link>
+                            <Dialog open={newEventDialogOpen} onOpenChange={setNewEventDialogOpen}>
+                                <DialogTrigger asChild>
+                                    <Button size="sm">
+                                        <Plus className="mr-2 h-4 w-4" />
+                                        New Event
+                                    </Button>
+                                </DialogTrigger>
+
+                                <DialogContent className="max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                                    <DialogHeader>
+                                        <DialogTitle>Create New Event</DialogTitle>
+                                    </DialogHeader>
+
+                                    <div className="space-y-4">
+                                        <div>
+                                            <p className="text-sm font-semibold mb-1">Event Name</p>
+                                            <Input
+                                                value={newEventForm.name}
+                                                onChange={(e) => setNewEventForm(prev => ({ ...prev, name: e.target.value }))}
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <p className="text-sm font-semibold mb-1">Start Date</p>
+                                            <Input
+                                                type="datetime-local"
+                                                value={newEventForm.startDateTime}
+                                                onChange={(e) => setNewEventForm(prev => ({ ...prev, startDateTime: e.target.value }))}
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <p className="text-sm font-semibold mb-1">End Date</p>
+                                            <Input
+                                                type="datetime-local"
+                                                value={newEventForm.endDateTime}
+                                                onChange={(e) => setNewEventForm(prev => ({ ...prev, endDateTime: e.target.value }))}
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <p className="text-sm font-semibold mb-1">Event Type</p>
+                                            <select
+                                                className="w-full border rounded px-3 py-2 text-sm"
+                                                value={newEventForm.eventTypeId}
+                                                onChange={(e) => setNewEventForm(prev => ({ ...prev, eventTypeId: parseInt(e.target.value) }))}
+                                            >
+                                                <option value="">Select</option>
+                                                {eventTypes.map(type => (
+                                                    <option key={type.eventTypeId} value={type.eventTypeId}>{type.typeName}</option>
+                                                ))}
+                                            </select>
+                                        </div>
+
+                                        <div>
+                                            <p className="text-sm font-semibold mb-1">Event Status</p>
+                                            <select
+                                                className="w-full border rounded px-3 py-2 text-sm"
+                                                value={newEventForm.eventStatusId}
+                                                onChange={(e) => setNewEventForm(prev => ({ ...prev, eventStatusId: parseInt(e.target.value) }))}
+                                            >
+                                                <option value="">Select</option>
+                                                {eventStatuses.map(status => (
+                                                    <option key={status.eventStatusId} value={status.eventStatusId}>{status.statusName}</option>
+                                                ))}
+                                            </select>
+                                        </div>
+
+                                        <div>
+                                            <p className="text-sm font-semibold mb-1">Organization</p>
+                                            <select
+                                                className="w-full border rounded px-3 py-2 text-sm"
+                                                value={newEventForm.organizationId}
+                                                onChange={(e) => setNewEventForm(prev => ({ ...prev, organizationId: parseInt(e.target.value) }))}
+                                            >
+                                                <option value="">Select</option>
+                                                {organizations.map(org => (
+                                                    <option key={org.organizationId} value={org.organizationId}>{org.name}</option>
+                                                ))}
+                                            </select>
+                                        </div>
+
+                                        <div>
+                                            <p className="text-sm font-semibold mb-1">Organizer</p>
+                                            <select
+                                                className="w-full border rounded px-3 py-2 text-sm"
+                                                value={newEventForm.organizerUserId}
+                                                onChange={(e) => setNewEventForm(prev => ({ ...prev, organizerUserId: parseInt(e.target.value) }))}
+                                            >
+                                                <option value="">Select</option>
+                                                {allUsers.map(user => (
+                                                    <option key={user.userId} value={user.userId}>{user.firstName} {user.lastName}</option>
+                                                ))}
+                                            </select>
+                                        </div>
+
+                                        <div>
+                                            <p className="text-sm font-semibold mb-1">Max Attendees</p>
+                                            <Input
+                                                type="number"
+                                                value={newEventForm.maxAttendees}
+                                                onChange={(e) => setNewEventForm(prev => ({ ...prev, maxAttendees: parseInt(e.target.value) }))}
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <p className="text-sm font-semibold mb-1">Registration Deadline</p>
+                                            <Input
+                                                type="datetime-local"
+                                                value={newEventForm.registrationDeadline}
+                                                onChange={(e) => setNewEventForm(prev => ({ ...prev, registrationDeadline: e.target.value }))}
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <p className="text-sm font-semibold mb-1">Location</p>
+                                            <Input
+                                                value={newEventForm.location}
+                                                onChange={(e) => setNewEventForm(prev => ({ ...prev, location: e.target.value }))}
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <p className="text-sm font-semibold mb-1">Image URL</p>
+                                            <Input
+                                                type="file"
+                                                accept="image/jpeg, image/png, image/jpg"
+                                                onChange={(e) => {
+                                                    const file = e.target.files?.[0];
+                                                    if (file) {
+                                                        setNewEventForm(prev => ({ ...prev, imageUrl: file }));
+                                                    }
+                                                }}
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <p className="text-sm font-semibold mb-1">Description</p>
+                                            <Input
+                                                value={newEventForm.description}
+                                                onChange={(e) => setNewEventForm(prev => ({ ...prev, description: e.target.value }))}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <DialogFooter>
+                                        <Button onClick={handleCreateNewEvent}>Create</Button>
+                                    </DialogFooter>
+                                </DialogContent>
+                            </Dialog>
+
+
+
+
                         </div>
 
                         <TabsContent value="upcoming" className="mt-0">
@@ -269,28 +536,63 @@ const Dashboard = () => {
                                         {notifications.length > 0 ? (
                                             notifications.map((n) => (
                                                 <div
-                                                    key={n.id}
+                                                    key={n.notificationId}
                                                     className={`p-4 border rounded-lg ${!n.isRead ? "bg-muted/20" : ""}`}
                                                 >
                                                     <div className="flex justify-between items-start">
-                                                        <h3 className="font-semibold">{n.title}</h3>
-                                                        <span className="text-xs text-muted-foreground">
-                                                            {new Date(n.createdDate).toLocaleDateString()}
-                                                        </span>
+                                                        <div>
+                                                            <h3 className="font-semibold">{n.title}</h3>
+                                                            <p className="text-sm mt-1">{n.message}</p>
+                                                            <p className="text-xs text-muted-foreground mt-1">
+                                                                {new Date(n.createdDate).toLocaleString()}
+                                                            </p>
+                                                        </div>
+                                                        <div className="space-x-2">
+                                                            {!n.isRead && (
+                                                                <Button
+                                                                    onClick={async () => {
+                                                                        try {
+                                                                            await NotificationsAPI.markAsRead(n.notificationId, user!.userId);
+                                                                            fetchUserData(user!.userId);
+                                                                        } catch (err) {
+                                                                            console.error("Okundu işaretleme hatası", err);
+                                                                        }
+                                                                    }}
+                                                                >
+                                                                    Mark as Read
+                                                                </Button>
+
+                                                            )}
+                                                            <Button
+                                                                size="sm"
+                                                                variant="destructive"
+                                                                onClick={async () => {
+                                                                    try {
+                                                                        await NotificationsAPI.delete(n.notificationId, user!.userId);
+                                                                        fetchUserData(user!.userId);
+                                                                    } catch (err) {
+                                                                        console.error("Bildirim silinemedi", err);
+                                                                    }
+                                                                }}
+                                                            >
+                                                                Delete
+                                                            </Button>
+                                                        </div>
                                                     </div>
-                                                    <p className="text-sm mt-1">{n.message}</p>
-                                                    {!n.isRead && (
-                                                        <Badge variant="secondary" className="mt-2">New</Badge>
-                                                    )}
+                                                    {!n.isRead && <Badge variant="secondary" className="mt-2">New</Badge>}
                                                 </div>
                                             ))
                                         ) : (
-                                            <div className="text-muted-foreground text-center p-8">No notifications.</div>
+                                            <div className="text-muted-foreground text-center p-8">
+                                                No notifications.
+                                            </div>
                                         )}
                                     </div>
                                 </CardContent>
                             </Card>
                         </TabsContent>
+
+
                     </Tabs>
                 </div>
             </div>

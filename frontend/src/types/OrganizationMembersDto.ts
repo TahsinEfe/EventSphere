@@ -1,10 +1,10 @@
 ﻿export interface OrganizationMembersDto {
-    memberId?: number;              
-    organizationId: number;        // Bağlı olduğu organizasyon
-    userId: number;                
-    joinDate?: string;            
-    isAdmin: boolean;             // Kullanıcı bu organizasyonda admin mi
+    memberId?: number;
+    organizationId: number;
+    userId: number;
+    joinDate?: string;
+    isAdmin: boolean;
 
-    organizationName?: string;    // GET işlemlerinde görüntüleme amaçlı
-    userName?: string;            // GET işlemlerinde görüntüleme amaçlı
+    organizationName?: string;
+    userName?: string;
 }

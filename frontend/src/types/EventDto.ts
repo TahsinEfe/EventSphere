@@ -12,8 +12,9 @@
     registrationDeadline?: string;
     addressId: number;
     location?: string; // sadece GET işlemlerinde geliyor olabilir
-    imageUrl?: string;
+    imageUrl?: File | string;
     description?: string;
     city: string; // sadece GET işlemlerinde geliyor olabilir
+    organizationName?: string;
     country: string; // sadece GET işlemlerinde geliyor olabilir
 }

@@ -2,15 +2,14 @@
   "ExpandedNodes": [
     "",
     "\\EventSphere",
-    "\\EventSphere\\Controllers",
-    "\\EventSphere\\Models",
     "\\EventSphere\\ViewModels",
-    "\\frontend\\src",
-    "\\frontend\\src\\components",
-    "\\frontend\\src\\pages",
+    "\\EventSphere\\wwwroot",
+    "\\EventSphere\\wwwroot\\uploads",
+    "\\frontend",
+    "\\frontend\\public",
     "\\frontend\\src\\services",
     "\\frontend\\src\\types"
   ],
-  "SelectedNode": "\\EventSphere\\Controllers\\OrganizationsController.cs",
+  "SelectedNode": "\\EventSphere\\wwwroot\\uploads\\9c6dfb55-c0a2-402a-9341-13495624272f.jpeg",
   "PreviewInSolutionExplorer": false
 }
