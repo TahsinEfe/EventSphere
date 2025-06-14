@@ -167,3 +167,4 @@ C:\Users\thsnf\OneDrive\Masaüstü\EventSphere\EventSphere\bin\Debug\net9.0\Emby
 C:\Users\thsnf\OneDrive\Masaüstü\EventSphere\EventSphere\bin\Debug\net9.0\MediaBrowser.Common.dll
 C:\Users\thsnf\OneDrive\Masaüstü\EventSphere\EventSphere\bin\Debug\net9.0\MediaBrowser.Model.dll
 C:\Users\thsnf\OneDrive\Masaüstü\EventSphere\EventSphere\bin\Debug\net9.0\EventSphere.staticwebassets.runtime.json
+C:\Users\thsnf\OneDrive\Masaüstü\EventSphere\EventSphere\obj\Debug\net9.0\EventSphere.sourcelink.json

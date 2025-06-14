@@ -2,14 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\EventSphere",
-    "\\EventSphere\\ViewModels",
+    "\\EventSphere\\Controllers",
     "\\EventSphere\\wwwroot",
-    "\\EventSphere\\wwwroot\\uploads",
     "\\frontend",
-    "\\frontend\\public",
+    "\\frontend\\src",
     "\\frontend\\src\\services",
     "\\frontend\\src\\types"
   ],
-  "SelectedNode": "\\EventSphere\\wwwroot\\uploads\\9c6dfb55-c0a2-402a-9341-13495624272f.jpeg",
   "PreviewInSolutionExplorer": false
 }

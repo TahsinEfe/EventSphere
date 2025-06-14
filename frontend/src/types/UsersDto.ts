@@ -6,6 +6,8 @@
     email: string;
     isActive: boolean;
     roleId: number;
-    roleName?: string; // sadece GET işlemleri için
-    isAdmin?: boolean; // sadece GET işlemleri için
+    /** Sadece GET için. PUT/POST'da kullanma. */
+    roleName?: string;
+    /** Sadece frontend logic. Backend'e göndermeyin. */
+    isAdmin?: boolean;
 }

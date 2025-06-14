@@ -9,7 +9,7 @@ namespace EventSphere.Controllers
     [Route("api/[controller]")]
     public class EventsController : ControllerBase
     {
-        private readonly EventSphereDbContext _context;
+        private readonly EventSphereDbContext _context; 
 
         public EventsController(EventSphereDbContext context)
         {
@@ -24,7 +24,6 @@ namespace EventSphere.Controllers
                 .Include(e => e.EventType)
                 .Include(e => e.EventStatus)
                 .Include(e => e.Organization)
-                // .Include(e => e.Address) // <-- GEREK YOK, ÇIKARILDI!
                 .ToListAsync();
 
             var dtoList = events.Select(e => new EventDto
@@ -41,8 +40,9 @@ namespace EventSphere.Controllers
                 IsPublic = e.IsPublic,
                 RegistrationDeadline = e.RegistrationDeadline,
                 ImageUrl = e.ImageUrl,
-                Description = e.Description
-                // Location, City, Country, vb. YOK!
+                Description = e.Description,
+                Location = e.Location
+
             }).ToList();
 
             return Ok(dtoList);
@@ -73,8 +73,8 @@ namespace EventSphere.Controllers
                 IsPublic = ev.IsPublic,
                 RegistrationDeadline = ev.RegistrationDeadline,
                 ImageUrl = ev.ImageUrl,
+                Location = ev.Location,
                 Description = ev.Description
-                // Location, City, Country, vb. YOK!
             };
 
             return Ok(dto);
@@ -134,6 +134,7 @@ namespace EventSphere.Controllers
                 MaxAttendees = model.MaxAttendees,
                 IsPublic = model.IsPublic,
                 RegistrationDeadline = parsedDeadline,
+                Location = model.Location,
                 ImageUrl = savedFileName,
                 Description = model.Description
             };
@@ -165,6 +166,7 @@ namespace EventSphere.Controllers
             ev.EventStatusId = dto.EventStatusId;
             ev.OrganizerUserId = dto.OrganizerUserId;
             ev.MaxAttendees = dto.MaxAttendees;
+            ev.Location = dto.Location;
             ev.IsPublic = dto.IsPublic;
             ev.RegistrationDeadline = dto.RegistrationDeadline;
             ev.ImageUrl = dto.ImageUrl;

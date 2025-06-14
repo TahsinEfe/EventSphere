@@ -10,7 +10,7 @@
     maxAttendees?: number;
     isPublic: boolean;
     registrationDeadline?: string;
-    addressId: number;
+    addressId: number
     location?: string; // sadece GET işlemlerinde geliyor olabilir
     imageUrl?: File | string;
     description?: string;

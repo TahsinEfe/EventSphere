@@ -37,6 +37,27 @@ namespace EventSphere.Controllers
             return Ok(seats);
         }
 
+        [HttpGet("by-event/{eventId}")]
+        public async Task<IActionResult> GetSeatsByEvent(int eventId)
+        {
+            var seats = await _context.Seats
+                .Include(s => s.Event)
+                .Where(s => s.EventId == eventId)
+                .Select(s => new SeatDto
+                {
+                    SeatId = s.SeatId,
+                    EventId = s.EventId,
+                    Section = s.Section ?? "",
+                    RowNumber = s.RowNumber ?? "",
+                    SeatNumber = s.SeatNumber ?? "",
+                    IsReserved = s.IsReserved,
+                    EventName = s.Event.Name
+                })
+                .ToListAsync();
+
+            return Ok(seats);
+        }
+
         // GET: api/seats/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)

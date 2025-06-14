@@ -3,44 +3,48 @@
   "WorkspaceRootPath": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\frontend\\src\\components\\EventCard.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\components\\EventCard.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\frontend\\src\\pages\\EventDetail.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\pages\\EventDetail.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\.env||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EventSphere\\.env||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EventSphere\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\frontend\\src\\services\\api.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\services\\api.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Controllers\\SeatsController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EventSphere\\Controllers\\SeatsController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Controllers\\EventsController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EventSphere\\Controllers\\EventsController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Models\\EventCreateRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EventSphere\\Models\\EventCreateRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Models\\Seat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EventSphere\\Models\\Seat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\ViewModels\\EventDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EventSphere\\ViewModels\\EventDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\ViewModels\\UserDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EventSphere\\ViewModels\\UserDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\frontend\\src\\pages\\EventsDashboard.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\pages\\EventsDashboard.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\frontend\\src\\pages\\Events.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\pages\\Events.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\frontend\\src\\types\\EventDto.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\types\\EventDto.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\frontend\\src\\services\\EventsAPI.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\services\\EventsAPI.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\frontend\\src\\pages\\Dashboard.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\pages\\Dashboard.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Models\\Event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EventSphere\\Models\\Event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\frontend\\src\\services\\UsersAPI.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\services\\UsersAPI.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -49,63 +53,77 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedHeight": 239,
+          "DockedHeight": 238,
           "SelectedChildIndex": 3,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": ".env",
-              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\.env",
-              "RelativeDocumentMoniker": "EventSphere\\.env",
-              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\.env",
-              "RelativeToolTip": "EventSphere\\.env",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-06-06T15:09:47.953Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Program.cs",
-              "RelativeDocumentMoniker": "EventSphere\\Program.cs",
-              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Program.cs",
-              "RelativeToolTip": "EventSphere\\Program.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAAAIAAAApAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "SeatsController.cs",
+              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Controllers\\SeatsController.cs",
+              "RelativeDocumentMoniker": "EventSphere\\Controllers\\SeatsController.cs",
+              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Controllers\\SeatsController.cs",
+              "RelativeToolTip": "EventSphere\\Controllers\\SeatsController.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAAUwDoAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-06T14:51:09.062Z",
+              "WhenOpened": "2025-06-14T13:58:16.107Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Seat.cs",
+              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Models\\Seat.cs",
+              "RelativeDocumentMoniker": "EventSphere\\Models\\Seat.cs",
+              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Models\\Seat.cs",
+              "RelativeToolTip": "EventSphere\\Models\\Seat.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAUwBgAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T13:58:12.615Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "EventCard.tsx",
-              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\frontend\\src\\components\\EventCard.tsx",
-              "RelativeDocumentMoniker": "frontend\\src\\components\\EventCard.tsx",
-              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\frontend\\src\\components\\EventCard.tsx",
-              "RelativeToolTip": "frontend\\src\\components\\EventCard.tsx",
-              "ViewState": "AgIAADoAAAAAAAAAAAAQwEYAAAAqAAAAAAAAAA==",
+              "Title": "EventDetail.tsx",
+              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\frontend\\src\\pages\\EventDetail.tsx",
+              "RelativeDocumentMoniker": "frontend\\src\\pages\\EventDetail.tsx",
+              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\frontend\\src\\pages\\EventDetail.tsx",
+              "RelativeToolTip": "frontend\\src\\pages\\EventDetail.tsx",
+              "ViewState": "AgIAANEAAAAAAAAAAAAEwOEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-06-06T14:35:16.951Z",
+              "WhenOpened": "2025-06-14T12:54:30.722Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "EventCreateRequest.cs",
-              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Models\\EventCreateRequest.cs",
-              "RelativeDocumentMoniker": "EventSphere\\Models\\EventCreateRequest.cs",
-              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Models\\EventCreateRequest.cs",
-              "RelativeToolTip": "EventSphere\\Models\\EventCreateRequest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAsAAAAAAAAAA==",
+              "DocumentIndex": 7,
+              "Title": "EventDto.ts",
+              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\frontend\\src\\types\\EventDto.ts",
+              "RelativeDocumentMoniker": "frontend\\src\\types\\EventDto.ts",
+              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\frontend\\src\\types\\EventDto.ts",
+              "RelativeToolTip": "frontend\\src\\types\\EventDto.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-06-13T22:34:58.551Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "EventDto.cs",
+              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\ViewModels\\EventDto.cs",
+              "RelativeDocumentMoniker": "EventSphere\\ViewModels\\EventDto.cs",
+              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\ViewModels\\EventDto.cs",
+              "RelativeToolTip": "EventSphere\\ViewModels\\EventDto.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-06T14:13:31.771Z"
+              "WhenOpened": "2025-06-13T22:25:59.043Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -115,76 +133,80 @@
               "RelativeDocumentMoniker": "frontend\\src\\services\\EventsAPI.ts",
               "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\frontend\\src\\services\\EventsAPI.ts",
               "RelativeToolTip": "frontend\\src\\services\\EventsAPI.ts",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAkwBQAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-06-06T13:53:29.438Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "UserDto.cs",
-              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\ViewModels\\UserDto.cs",
-              "RelativeDocumentMoniker": "EventSphere\\ViewModels\\UserDto.cs",
-              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\ViewModels\\UserDto.cs",
-              "RelativeToolTip": "EventSphere\\ViewModels\\UserDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-06T13:53:26.787Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "api.ts",
-              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\frontend\\src\\services\\api.ts",
-              "RelativeDocumentMoniker": "frontend\\src\\services\\api.ts",
-              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\frontend\\src\\services\\api.ts",
-              "RelativeToolTip": "frontend\\src\\services\\api.ts",
-              "ViewState": "AgIAABEAAAAAAAAAAAAAABEAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-06-06T08:51:00.502Z",
+              "WhenOpened": "2025-06-13T22:22:59.171Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "EventDto.cs",
-              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\ViewModels\\EventDto.cs",
-              "RelativeDocumentMoniker": "EventSphere\\ViewModels\\EventDto.cs",
-              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\ViewModels\\EventDto.cs",
-              "RelativeToolTip": "EventSphere\\ViewModels\\EventDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T19:46:08.946Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "EventsController.cs",
-              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Controllers\\EventsController.cs",
-              "RelativeDocumentMoniker": "EventSphere\\Controllers\\EventsController.cs",
-              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Controllers\\EventsController.cs",
-              "RelativeToolTip": "EventSphere\\Controllers\\EventsController.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAkAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T19:10:08.491Z",
+              "Title": "Events.tsx",
+              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\frontend\\src\\pages\\Events.tsx",
+              "RelativeDocumentMoniker": "frontend\\src\\pages\\Events.tsx",
+              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\frontend\\src\\pages\\Events.tsx",
+              "RelativeToolTip": "frontend\\src\\pages\\Events.tsx",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAhwHcAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-06-13T22:22:53.731Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
-              "Title": "Dashboard.tsx",
-              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\frontend\\src\\pages\\Dashboard.tsx",
-              "RelativeDocumentMoniker": "frontend\\src\\pages\\Dashboard.tsx",
-              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\frontend\\src\\pages\\Dashboard.tsx",
-              "RelativeToolTip": "frontend\\src\\pages\\Dashboard.tsx",
-              "ViewState": "AgIAACcAAAAAAAAAAAAwwFkAAAAAAAAAAAAAAA==",
+              "Title": "Event.cs",
+              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Models\\Event.cs",
+              "RelativeDocumentMoniker": "EventSphere\\Models\\Event.cs",
+              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Models\\Event.cs",
+              "RelativeToolTip": "EventSphere\\Models\\Event.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAACQAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-13T22:22:20.222Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EventsController.cs",
+              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Controllers\\EventsController.cs",
+              "RelativeDocumentMoniker": "EventSphere\\Controllers\\EventsController.cs",
+              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Controllers\\EventsController.cs",
+              "RelativeToolTip": "EventSphere\\Controllers\\EventsController.cs",
+              "ViewState": "AgIAAMQAAAAAAAAAAAAUwM0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-13T22:22:05.633Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "EventsDashboard.tsx",
+              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\frontend\\src\\pages\\EventsDashboard.tsx",
+              "RelativeDocumentMoniker": "frontend\\src\\pages\\EventsDashboard.tsx",
+              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\frontend\\src\\pages\\EventsDashboard.tsx",
+              "RelativeToolTip": "frontend\\src\\pages\\EventsDashboard.tsx",
+              "ViewState": "AgIAALcAAAAAAAAAAAAUwMIAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-06-01T21:34:25.04Z"
+              "WhenOpened": "2025-06-13T22:02:18.519Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "UsersAPI.ts",
+              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\frontend\\src\\services\\UsersAPI.ts",
+              "RelativeDocumentMoniker": "frontend\\src\\services\\UsersAPI.ts",
+              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\frontend\\src\\services\\UsersAPI.ts",
+              "RelativeToolTip": "frontend\\src\\services\\UsersAPI.ts",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAQwAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-06-13T20:46:19.077Z",
+              "EditorCaption": ""
             }
           ]
         },
         {
-          "DockedHeight": 161,
+          "DockedHeight": 162,
           "SelectedChildIndex": -1,
           "Children": [
             {

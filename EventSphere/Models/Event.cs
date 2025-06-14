@@ -34,6 +34,8 @@ namespace EventSphere.Models
 
         public string? Description { get; set; }
 
+        public string? Location { get; set; }
+
         [ForeignKey("EventStatusId")]
         public virtual EventStatus EventStatus { get; set; } = null!;
 

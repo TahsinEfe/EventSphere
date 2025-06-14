@@ -16,6 +16,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5172";
+
 
 const EventsDashboard = () => {
     const [events, setEvents] = useState<EventDto[]>([]);
@@ -73,7 +75,12 @@ const EventsDashboard = () => {
         }
     };
 
-
+    function resolveImageUrl(url?: string) {
+        if (!url) return "/placeholder.svg";
+        if (url.startsWith("http")) return url;
+        if (url.startsWith("/")) return `${API_BASE_URL}${url}`;
+        return `${API_BASE_URL}/${url}`;
+    }
 
     return (
         <div className="container mx-auto px-4 py-8">
@@ -110,11 +117,7 @@ const EventsDashboard = () => {
                                     <tr key={event.eventId} className="border-b hover:bg-gray-50">
                                         <td className="p-3">
                                             <img
-                                                src={
-                                                    event.imageUrl && event.imageUrl.startsWith("/")
-                                                        ? event.imageUrl
-                                                        : "/placeholder.svg"
-                                                }
+                                                src={resolveImageUrl(event.imageUrl)}
                                                 alt={event.name}
                                                 className="w-24 h-16 object-cover rounded"
                                             />

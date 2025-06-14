@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -12,17 +12,38 @@ import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "
 import { AuthAPI } from "@/services/auth";
 import api from "@/services/api";
 import { ArrowLeft } from "lucide-react";
+import { UsersDto } from "@/types/UsersDto";
 
+// Sadece profil güncellemede backend'in istediği alanlar
 const profileFormSchema = z.object({
     userId: z.number(),
     username: z.string().min(2),
     firstName: z.string().min(2),
     lastName: z.string().min(2),
     email: z.string().email(),
-    password: z.string().min(4).optional(),
+    isActive: z.boolean(),
+    roleId: z.number(),
+    password: z.string().min(4).optional(), // opsiyonel, boş ise gönderilmeyecek
+    // roleName, isAdmin eklemiyoruz
 });
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
+
+// Sadece güncellenecek alanları backend'e göndermek için
+function mapToUserUpdateDto(data: ProfileFormValues) {
+    return {
+        userId: data.userId,
+        username: data.username,
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        isActive: data.isActive,
+        roleId: data.roleId,
+        // Şifre alanı backend güncelleyebiliyorsa, aşağıyı aktif et.
+        // Şifreyi güncellemek istiyorsan, backend'de ilgili property'yi ayarla.
+        // password: data.password, // Eğer backend destekliyorsa ekle, yoksa gönderme!
+    };
+}
 
 const EditProfile = () => {
     const { toast } = useToast();
@@ -43,6 +64,7 @@ const EditProfile = () => {
 
             try {
                 const res = await api.get(`/Users/${currentUser.userId}`);
+                // isActive ve roleId backend'den gelmeli
                 setInitialValues(res.data);
                 form.reset(res.data);
             } catch (err) {
@@ -51,12 +73,15 @@ const EditProfile = () => {
         };
 
         fetchUser();
+        // eslint-disable-next-line
     }, []);
 
     const onSubmit = async (data: ProfileFormValues) => {
         setLoading(true);
         try {
-            await api.put(`/Users/${data.userId}`, data);
+            // Şifre boşsa göndermiyoruz!
+            const payload = mapToUserUpdateDto(data);
+            await api.put(`/Users/${data.userId}`, payload);
             toast({ title: "Profile updated successfully." });
         } catch (err) {
             console.error("Update failed", err);
@@ -85,7 +110,9 @@ const EditProfile = () => {
                     <div className="flex justify-center mb-6">
                         <Avatar className="h-20 w-20">
                             <AvatarImage src="/blank-profile.png" />
-                            <AvatarFallback>{initialValues.firstName[0]}</AvatarFallback>
+                            <AvatarFallback>
+                                {initialValues.firstName[0]}
+                            </AvatarFallback>
                         </Avatar>
                     </div>
 
@@ -97,7 +124,9 @@ const EditProfile = () => {
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormLabel>Username</FormLabel>
-                                        <FormControl><Input {...field} /></FormControl>
+                                        <FormControl>
+                                            <Input {...field} />
+                                        </FormControl>
                                         <FormMessage />
                                     </FormItem>
                                 )}
@@ -110,7 +139,9 @@ const EditProfile = () => {
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormLabel>First Name</FormLabel>
-                                            <FormControl><Input {...field} /></FormControl>
+                                            <FormControl>
+                                                <Input {...field} />
+                                            </FormControl>
                                             <FormMessage />
                                         </FormItem>
                                     )}
@@ -122,7 +153,9 @@ const EditProfile = () => {
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormLabel>Last Name</FormLabel>
-                                            <FormControl><Input {...field} /></FormControl>
+                                            <FormControl>
+                                                <Input {...field} />
+                                            </FormControl>
                                             <FormMessage />
                                         </FormItem>
                                     )}
@@ -135,25 +168,32 @@ const EditProfile = () => {
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormLabel>Email</FormLabel>
-                                        <FormControl><Input {...field} /></FormControl>
+                                        <FormControl>
+                                            <Input {...field} />
+                                        </FormControl>
                                         <FormMessage />
                                     </FormItem>
                                 )}
                             />
 
-                            <FormField
+                            {/* Eğer şifreyi burada göstermek istemiyorsan bu alanı çıkarabilirsin */}
+                            {/* <FormField
                                 control={form.control}
                                 name="password"
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormLabel>New Password (optional)</FormLabel>
                                         <FormControl>
-                                            <Input type="password" placeholder="Leave blank to keep old password" {...field} />
+                                            <Input
+                                                type="password"
+                                                placeholder="Leave blank to keep old password"
+                                                {...field}
+                                            />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
                                 )}
-                            />
+                            /> */}
 
                             <div className="flex justify-end">
                                 <Button type="submit" disabled={loading}>
