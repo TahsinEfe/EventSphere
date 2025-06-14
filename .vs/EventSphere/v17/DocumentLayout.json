@@ -3,28 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Controllers\\NotificationsController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EventSphere\\Controllers\\NotificationsController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\frontend\\src\\components\\RatingView.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\components\\RatingView.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Models\\Notification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EventSphere\\Models\\Notification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\frontend\\src\\pages\\EventDetail.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\pages\\EventDetail.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\ViewModels\\UpdateNotificationDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EventSphere\\ViewModels\\UpdateNotificationDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Controllers\\SeatsController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EventSphere\\Controllers\\SeatsController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\ViewModels\\CreateNotificationDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EventSphere\\ViewModels\\CreateNotificationDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\ViewModels\\SeatDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EventSphere\\ViewModels\\SeatDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Models\\Seat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EventSphere\\Models\\Seat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Models\\EventSphereDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EventSphere\\Models\\EventSphereDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Controllers\\TasksController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EventSphere\\Controllers\\TasksController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 251,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,46 +42,57 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Notification.cs",
-              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Models\\Notification.cs",
-              "RelativeDocumentMoniker": "EventSphere\\Models\\Notification.cs",
-              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Models\\Notification.cs",
-              "RelativeToolTip": "EventSphere\\Models\\Notification.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAABkAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-14T17:52:26.941Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UpdateNotificationDto.cs",
-              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\ViewModels\\UpdateNotificationDto.cs",
-              "RelativeDocumentMoniker": "EventSphere\\ViewModels\\UpdateNotificationDto.cs",
-              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\ViewModels\\UpdateNotificationDto.cs",
-              "RelativeToolTip": "EventSphere\\ViewModels\\UpdateNotificationDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-14T17:52:21.282Z",
+              "DocumentIndex": 0,
+              "Title": "RatingView.tsx",
+              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\frontend\\src\\components\\RatingView.tsx",
+              "RelativeDocumentMoniker": "frontend\\src\\components\\RatingView.tsx",
+              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\frontend\\src\\components\\RatingView.tsx",
+              "RelativeToolTip": "frontend\\src\\components\\RatingView.tsx",
+              "ViewState": "AgIAABUAAAAAAAAAAADwvx8AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-06-14T20:09:55.611Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "CreateNotificationDto.cs",
-              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\ViewModels\\CreateNotificationDto.cs",
-              "RelativeDocumentMoniker": "EventSphere\\ViewModels\\CreateNotificationDto.cs",
-              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\ViewModels\\CreateNotificationDto.cs",
-              "RelativeToolTip": "EventSphere\\ViewModels\\CreateNotificationDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Title": "SeatDto.cs",
+              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\ViewModels\\SeatDto.cs",
+              "RelativeDocumentMoniker": "EventSphere\\ViewModels\\SeatDto.cs",
+              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\ViewModels\\SeatDto.cs",
+              "RelativeToolTip": "EventSphere\\ViewModels\\SeatDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-14T17:52:14.955Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-14T18:39:39.992Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "Seat.cs",
+              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Models\\Seat.cs",
+              "RelativeDocumentMoniker": "EventSphere\\Models\\Seat.cs",
+              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Models\\Seat.cs",
+              "RelativeToolTip": "EventSphere\\Models\\Seat.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T18:39:35.219Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SeatsController.cs",
+              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Controllers\\SeatsController.cs",
+              "RelativeDocumentMoniker": "EventSphere\\Controllers\\SeatsController.cs",
+              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Controllers\\SeatsController.cs",
+              "RelativeToolTip": "EventSphere\\Controllers\\SeatsController.cs",
+              "ViewState": "AgIAAI4AAAAAAAAAAAAAwJsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T18:39:24.934Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "EventSphereDbContext.cs",
               "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Models\\EventSphereDbContext.cs",
               "RelativeDocumentMoniker": "EventSphere\\Models\\EventSphereDbContext.cs",
@@ -89,33 +100,19 @@
               "RelativeToolTip": "EventSphere\\Models\\EventSphereDbContext.cs",
               "ViewState": "AgIAALQAAAAAAAAAAADwv78AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-14T15:43:51.22Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-14T15:43:51.22Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "TasksController.cs",
-              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Controllers\\TasksController.cs",
-              "RelativeDocumentMoniker": "EventSphere\\Controllers\\TasksController.cs",
-              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Controllers\\TasksController.cs",
-              "RelativeToolTip": "EventSphere\\Controllers\\TasksController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-14T15:32:05.655Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "NotificationsController.cs",
-              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Controllers\\NotificationsController.cs",
-              "RelativeDocumentMoniker": "EventSphere\\Controllers\\NotificationsController.cs",
-              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\EventSphere\\Controllers\\NotificationsController.cs",
-              "RelativeToolTip": "EventSphere\\Controllers\\NotificationsController.cs",
-              "ViewState": "AgIAADwAAAAAAAAAAAAkwE4AAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-14T15:31:59.964Z",
+              "DocumentIndex": 1,
+              "Title": "EventDetail.tsx",
+              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\frontend\\src\\pages\\EventDetail.tsx",
+              "RelativeDocumentMoniker": "frontend\\src\\pages\\EventDetail.tsx",
+              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\EventSphere\\frontend\\src\\pages\\EventDetail.tsx",
+              "RelativeToolTip": "frontend\\src\\pages\\EventDetail.tsx",
+              "ViewState": "AgIAAA8BAAAAAAAAAADwvyABAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-06-14T20:05:56.181Z",
               "EditorCaption": ""
             }
           ]

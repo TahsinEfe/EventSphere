@@ -140,6 +140,27 @@ namespace EventSphere.Controllers
             return NoContent();
         }
 
+        [HttpGet("event-rating/{eventId}")]
+        public async Task<IActionResult> GetAverageRating(int eventId)
+        {
+            var result = await _context.Events
+                .FromSqlRaw("SELECT * FROM vw_EventsWithAverageRating WHERE EventID = {0}", eventId)
+                .Select(e => new
+                {
+                    e.EventId,
+                    e.Name,
+                    e.Description,
+                    AverageRating = EF.Property<double>(e, "AverageRating")
+                })
+                .FirstOrDefaultAsync();
+
+            if (result == null)
+                return NotFound();
+
+            return Ok(result);
+        }
+
+
         // DELETE: api/seats/5?userId=1
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id, [FromQuery] int userId)
