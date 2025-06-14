@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using EventSphere.Models;
 
@@ -22,23 +23,30 @@ namespace EventSphere.Controllers
             var user = await _context.Users.FindAsync(userId);
             if (user == null) return Unauthorized();
 
-            if (user.RoleId == 1)
+            var parameters = new[]
             {
-                // Admin tüm bildirimleri görebilir
-                return Ok(await _context.Notifications.ToListAsync());
-            }
+                new SqlParameter("@UserID", userId),
+                new SqlParameter("@IsAdmin", user.RoleId == 1)
+            };
 
-            // Normal kullanıcı sadece kendi bildirimlerini görür
-            return Ok(await _context.Notifications
-                .Where(n => n.UserId == userId)
-                .ToListAsync());
+            var notifications = await _context.Notifications
+                .FromSqlRaw("EXEC sp_GetNotificationsByUser @UserID, @IsAdmin", parameters)
+                .ToListAsync();
+
+            return Ok(notifications);
         }
 
         // GET: api/notifications/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> GetById(long id)
         {
-            var notification = await _context.Notifications.FindAsync(id);
+            var param = new SqlParameter("@NotificationId", id);
+
+            var results = await _context.Notifications
+                .FromSqlRaw("EXEC sp_GetNotificationById @NotificationId", param)
+                .ToListAsync();
+
+            var notification = results.FirstOrDefault();
             if (notification == null)
                 return NotFound();
 
@@ -49,74 +57,66 @@ namespace EventSphere.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateNotificationDto dto, [FromQuery] int userId)
         {
-            var user = await _context.Users.FindAsync(userId);
-            if (user == null)
-                return NotFound("Kullanıcı bulunamadı.");
-
-            var notification = new Notification
+            var parameters = new[]
             {
-                Title = dto.Title,
-                Message = dto.Message,
-                UserId = userId,
-                CreatedDate = DateTime.Now,
-                IsRead = false
+                new SqlParameter("@UserID", userId),
+                new SqlParameter("@Title", dto.Title),
+                new SqlParameter("@Message", dto.Message)
             };
 
-            _context.Notifications.Add(notification);
-            await _context.SaveChangesAsync();
+            var result = await _context.Notifications
+            .FromSqlRaw("EXEC sp_CreateNotification @UserID, @Title, @Message", parameters)
+            .ToListAsync();
 
-            return CreatedAtAction(nameof(GetById), new { id = notification.NotificationId }, notification);
+            var created = result.FirstOrDefault();
+            if (created == null)
+                return StatusCode(500, "Bildirim oluşturulamadı.");
+
+            return CreatedAtAction(nameof(GetById), new { id = created.NotificationId }, created);
         }
-
 
         // PUT: api/notifications/5?userId=1
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(long id, [FromBody] UpdateNotificationDto dto, [FromQuery] int userId)
         {
             if (id != dto.NotificationId)
-                return BadRequest();
-
-            var notification = await _context.Notifications.FindAsync(id);
-            if (notification == null)
-                return NotFound();
+                return BadRequest("ID uyuşmazlığı.");
 
             var user = await _context.Users.FindAsync(userId);
             if (user == null)
                 return Unauthorized("Kullanıcı bulunamadı.");
 
-            if (notification.UserId != userId && user.RoleId != 1)
-                return Unauthorized("Sadece kendi bildiriminizi veya admin yetkiniz varsa düzenleyebilirsiniz.");
+            var parameters = new[]
+            {
+                new SqlParameter("@NotificationId", id),
+                new SqlParameter("@UserID", userId),
+                new SqlParameter("@IsRead", dto.IsRead),
+                new SqlParameter("@IsAdmin", user.RoleId == 1)
+            };
 
-            notification.IsRead = dto.IsRead;
-            await _context.SaveChangesAsync();
+            await _context.Database.ExecuteSqlRawAsync("EXEC sp_UpdateNotification @NotificationId, @UserID, @IsRead, @IsAdmin", parameters);
 
             return NoContent();
         }
-
-
 
         // DELETE: api/notifications/5?userId=1
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(long id, [FromQuery] int userId)
         {
-            var notification = await _context.Notifications.FindAsync(id);
-            if (notification == null)
-                return NotFound();
-
             var user = await _context.Users.FindAsync(userId);
             if (user == null)
                 return Unauthorized("Kullanıcı bulunamadı.");
 
-            // Rolü kontrol et (admin = 1)
-            if (notification.UserId != userId && user.RoleId != 1)
-                return StatusCode(403, "Sadece kendi bildiriminizi veya admin olarak silebilirsiniz.");
+            var parameters = new[]
+            {
+                new SqlParameter("@NotificationId", id),
+                new SqlParameter("@UserID", userId),
+                new SqlParameter("@IsAdmin", user.RoleId == 1)
+            };
 
-            _context.Notifications.Remove(notification);
-            await _context.SaveChangesAsync();
+            await _context.Database.ExecuteSqlRawAsync("EXEC sp_DeleteNotification @NotificationId, @UserID, @IsAdmin", parameters);
 
             return NoContent();
         }
-
-
     }
 }

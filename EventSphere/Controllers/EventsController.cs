@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using EventSphere.Models;
 using EventSphere.ViewModels;
@@ -9,21 +10,18 @@ namespace EventSphere.Controllers
     [Route("api/[controller]")]
     public class EventsController : ControllerBase
     {
-        private readonly EventSphereDbContext _context; 
+        private readonly EventSphereDbContext _context;
 
         public EventsController(EventSphereDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/events
         [HttpGet]
         public async Task<IActionResult> GetAllEvents()
         {
             var events = await _context.Events
-                .Include(e => e.EventType)
-                .Include(e => e.EventStatus)
-                .Include(e => e.Organization)
+                .FromSqlRaw("EXEC sp_GetAllEvents")
                 .ToListAsync();
 
             var dtoList = events.Select(e => new EventDto
@@ -42,19 +40,21 @@ namespace EventSphere.Controllers
                 ImageUrl = e.ImageUrl,
                 Description = e.Description,
                 Location = e.Location
-
             }).ToList();
 
             return Ok(dtoList);
         }
 
-        // GET: api/events/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetEvent(int id)
         {
-            var ev = await _context.Events
-                //.Include(e => e.Address) // <-- ÇIKARILDI!
-                .FirstOrDefaultAsync(e => e.EventId == id);
+            var param = new SqlParameter("@EventId", id);
+
+            var events = await _context.Events
+                .FromSqlRaw("EXEC sp_GetEventById @EventId", param)
+                .ToListAsync();
+
+            var ev = events.FirstOrDefault();
 
             if (ev == null)
                 return NotFound();
@@ -80,7 +80,6 @@ namespace EventSphere.Controllers
             return Ok(dto);
         }
 
-        // POST: api/events
         [HttpPost]
         [Consumes("multipart/form-data")]
         public async Task<IActionResult> Create([FromForm] EventCreateRequest model)
@@ -88,7 +87,6 @@ namespace EventSphere.Controllers
             if (!await HasAccess(model.OrganizationId, model.OrganizerUserId))
                 return StatusCode(403, "Yetkiniz yok.");
 
-            // Tarih parse işlemleri
             if (!DateTime.TryParse(model.StartDateTime.ToString(), out DateTime parsedStartDate))
                 return BadRequest("Geçersiz başlangıç tarihi.");
 
@@ -96,14 +94,10 @@ namespace EventSphere.Controllers
                 return BadRequest("Geçersiz bitiş tarihi.");
 
             DateTime? parsedDeadline = null;
-            if (model.RegistrationDeadline != null)
-            {
-                if (!DateTime.TryParse(model.RegistrationDeadline.ToString(), out DateTime tempDeadline))
-                    return BadRequest("Geçersiz kayıt bitiş tarihi.");
+            if (model.RegistrationDeadline != null &&
+                DateTime.TryParse(model.RegistrationDeadline.ToString(), out DateTime tempDeadline))
                 parsedDeadline = tempDeadline;
-            }
 
-            // Görsel dosyasını kaydetme
             string savedFileName = null;
             if (model.ImageFile != null && model.ImageFile.Length > 0)
             {
@@ -122,30 +116,30 @@ namespace EventSphere.Controllers
                 savedFileName = "/uploads/" + uniqueFileName;
             }
 
-            var ev = new Event
+            var parameters = new[]
             {
-                OrganizationId = model.OrganizationId,
-                Name = model.Name,
-                StartDateTime = parsedStartDate,
-                EndDateTime = parsedEndDate,
-                EventTypeId = model.EventTypeId,
-                EventStatusId = model.EventStatusId,
-                OrganizerUserId = model.OrganizerUserId,
-                MaxAttendees = model.MaxAttendees,
-                IsPublic = model.IsPublic,
-                RegistrationDeadline = parsedDeadline,
-                Location = model.Location,
-                ImageUrl = savedFileName,
-                Description = model.Description
+                new SqlParameter("@OrganizationId", model.OrganizationId),
+                new SqlParameter("@Name", model.Name),
+                new SqlParameter("@StartDateTime", parsedStartDate),
+                new SqlParameter("@EndDateTime", parsedEndDate),
+                new SqlParameter("@EventTypeId", model.EventTypeId),
+                new SqlParameter("@EventStatusId", model.EventStatusId),
+                new SqlParameter("@OrganizerUserId", model.OrganizerUserId.HasValue ? (object)model.OrganizerUserId.Value : DBNull.Value),
+                new SqlParameter("@MaxAttendees", model.MaxAttendees.HasValue ? (object)model.MaxAttendees.Value : DBNull.Value),
+                new SqlParameter("@IsPublic", model.IsPublic),
+                new SqlParameter("@RegistrationDeadline", parsedDeadline ?? (object)DBNull.Value),
+                new SqlParameter("@Location", model.Location ?? (object)DBNull.Value),
+                new SqlParameter("@ImageUrl", savedFileName ?? (object)DBNull.Value),
+                new SqlParameter("@Description", model.Description ?? (object)DBNull.Value)
             };
 
-            _context.Events.Add(ev);
-            await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetEvent), new { id = ev.EventId }, new { id = ev.EventId });
+            await _context.Database.ExecuteSqlRawAsync("EXEC sp_CreateEvent @OrganizationId, @Name, @StartDateTime, @EndDateTime, @EventTypeId, @EventStatusId, @OrganizerUserId, @MaxAttendees, @IsPublic, @RegistrationDeadline, @Location, @ImageUrl, @Description", parameters);
+
+            return Ok("Etkinlik başarıyla oluşturuldu.");
         }
 
-        // PUT: api/events/5
+
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateEvent(int id, EventDto dto)
         {
@@ -155,46 +149,38 @@ namespace EventSphere.Controllers
             if (!await HasAccess(dto.OrganizationId, dto.OrganizerUserId))
                 return StatusCode(403, "Yetkiniz yok.");
 
-            var ev = await _context.Events.FindAsync(id);
-            if (ev == null)
-                return NotFound();
+            var parameters = new[]
+            {
+                new SqlParameter("@EventId", dto.EventId),
+                new SqlParameter("@OrganizationId", dto.OrganizationId),
+                new SqlParameter("@Name", dto.Name),
+                new SqlParameter("@StartDateTime", dto.StartDateTime),
+                new SqlParameter("@EndDateTime", dto.EndDateTime),
+                new SqlParameter("@EventTypeId", dto.EventTypeId),
+                new SqlParameter("@EventStatusId", dto.EventStatusId),
+                new SqlParameter("@OrganizerUserId", dto.OrganizerUserId.HasValue ? (object)dto.OrganizerUserId.Value : DBNull.Value),
+                new SqlParameter("@MaxAttendees", dto.MaxAttendees.HasValue ? (object)dto.MaxAttendees.Value : DBNull.Value),
+                new SqlParameter("@IsPublic", dto.IsPublic),
+                new SqlParameter("@RegistrationDeadline", dto.RegistrationDeadline ?? (object)DBNull.Value),
+                new SqlParameter("@Location", dto.Location ?? (object)DBNull.Value),
+                new SqlParameter("@ImageUrl", dto.ImageUrl ?? (object)DBNull.Value),
+                new SqlParameter("@Description", dto.Description ?? (object)DBNull.Value)
+            };
 
-            ev.Name = dto.Name;
-            ev.StartDateTime = dto.StartDateTime;
-            ev.EndDateTime = dto.EndDateTime;
-            ev.EventTypeId = dto.EventTypeId;
-            ev.EventStatusId = dto.EventStatusId;
-            ev.OrganizerUserId = dto.OrganizerUserId;
-            ev.MaxAttendees = dto.MaxAttendees;
-            ev.Location = dto.Location;
-            ev.IsPublic = dto.IsPublic;
-            ev.RegistrationDeadline = dto.RegistrationDeadline;
-            ev.ImageUrl = dto.ImageUrl;
-            ev.Description = dto.Description;
-
-            await _context.SaveChangesAsync();
+            await _context.Database.ExecuteSqlRawAsync("EXEC sp_UpdateEvent @EventId, @OrganizationId, @Name, @StartDateTime, @EndDateTime, @EventTypeId, @EventStatusId, @OrganizerUserId, @MaxAttendees, @IsPublic, @RegistrationDeadline, @Location, @ImageUrl, @Description", parameters);
 
             return NoContent();
         }
 
-        // DELETE: api/events/5
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEvent(int id)
         {
-            var ev = await _context.Events.FindAsync(id);
-            if (ev == null)
-                return NotFound();
-
-            if (!await HasAccess(ev.OrganizationId, ev.OrganizerUserId))
-                return StatusCode(403, "Yetkiniz yok.");
-
-            _context.Events.Remove(ev);
-            await _context.SaveChangesAsync();
-
+            var param = new SqlParameter("@EventId", id);
+            await _context.Database.ExecuteSqlRawAsync("EXEC sp_DeleteEvent @EventId", param);
             return NoContent();
         }
 
-        // KULLANICI YETKİSİ KONTROLÜ
         private async Task<bool> HasAccess(int organizationId, int? organizerUserId)
         {
             if (organizerUserId == null)
@@ -204,11 +190,10 @@ namespace EventSphere.Controllers
             if (user == null)
                 return false;
 
-            if (user.RoleId == 1) // Admin
+            if (user.RoleId == 1)
                 return true;
 
-            return await _context.OrganizationMembers
-                .AnyAsync(m => m.OrganizationId == organizationId && m.UserId == organizerUserId);
+            return await _context.OrganizationMembers.AnyAsync(m => m.OrganizationId == organizationId && m.UserId == organizerUserId);
         }
     }
 }

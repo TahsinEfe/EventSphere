@@ -1,8 +1,9 @@
 ﻿using EventSphere.Models;
 using EventSphere.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using UserDto = EventSphere.ViewModels.UserDto;
+using System.Linq;
 
 namespace EventSphere.Controllers
 {
@@ -21,19 +22,8 @@ namespace EventSphere.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers()
         {
-            var users = await _context.Users
-                .Include(u => u.Role)
-                .Select(u => new UserDto
-                {
-                    UserId = u.UserId,
-                    Username = u.Username,
-                    FirstName = u.FirstName,
-                    LastName = u.LastName,
-                    Email = u.Email,
-                    IsActive = u.IsActive,
-                    RoleId = u.RoleId,
-                    RoleName = u.Role.RoleName
-                })
+            var users = await _context.UserDtos
+                .FromSqlRaw("EXEC sp_GetAllUsers")
                 .ToListAsync();
 
             return Ok(users);
@@ -43,21 +33,13 @@ namespace EventSphere.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<UserDto>> GetUser(int id)
         {
-            var user = await _context.Users
-                .Include(u => u.Role)
-                .Where(u => u.UserId == id)
-                .Select(u => new UserDto
-                {
-                    UserId = u.UserId,
-                    Username = u.Username,
-                    FirstName = u.FirstName,
-                    LastName = u.LastName,
-                    Email = u.Email,
-                    IsActive = u.IsActive,
-                    RoleId = u.RoleId,
-                    RoleName = u.Role.RoleName
-                })
-                .FirstOrDefaultAsync();
+            var param = new SqlParameter("@UserId", id);
+
+            var user = _context.UserDtos
+                .FromSqlRaw("EXEC sp_GetUserById @UserId", param)
+                .AsNoTracking()
+                .AsEnumerable()
+                .FirstOrDefault();
 
             if (user == null)
                 return NotFound();
@@ -65,41 +47,33 @@ namespace EventSphere.Controllers
             return Ok(user);
         }
 
+
         // POST: api/users
         [HttpPost]
-        public async Task<ActionResult<User>> Register([FromBody] RegisterRequest request)
+        public async Task<ActionResult> Register([FromBody] RegisterRequest request)
         {
-            if (string.IsNullOrWhiteSpace(request.Username) ||
-                string.IsNullOrWhiteSpace(request.PasswordHash) ||
-                string.IsNullOrWhiteSpace(request.Email))
+            var parameters = new[]
             {
-                return BadRequest("Zorunlu alanlar boş geçilemez.");
-            }
-
-            var exists = await _context.Users
-                .AnyAsync(u => u.Username == request.Username || u.Email == request.Email);
-
-            if (exists)
-                return BadRequest("Bu kullanıcı adı veya e-posta zaten kayıtlı.");
-
-            var user = new User
-            {
-                Username = request.Username,
-                PasswordHash = request.PasswordHash,
-                FirstName = request.FirstName,
-                LastName = request.LastName,
-                Email = request.Email,
-                RoleId = 4,       // Otomatik olarak Attendee
-                IsActive = true   
+                new SqlParameter("@Username", request.Username),
+                new SqlParameter("@PasswordHash", request.PasswordHash),
+                new SqlParameter("@FirstName", request.FirstName ?? (object)DBNull.Value),
+                new SqlParameter("@LastName", request.LastName ?? (object)DBNull.Value),
+                new SqlParameter("@Email", request.Email),
+                new SqlParameter("@RoleId", 4),
+                new SqlParameter("@IsActive", true)
             };
 
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.Database.ExecuteSqlRawAsync("EXEC sp_RegisterUser @Username, @PasswordHash, @FirstName, @LastName, @Email, @RoleId, @IsActive", parameters);
+            }
+            catch (SqlException ex)
+            {
+                return BadRequest(ex.Message);
+            }
 
-            return CreatedAtAction(nameof(GetUser), new { id = user.UserId }, user);
+            return Ok("User registered successfully.");
         }
-
-
 
         // PUT: api/users/5
         [HttpPut("{id}")]
@@ -108,40 +82,31 @@ namespace EventSphere.Controllers
             if (id != dto.UserId)
                 return BadRequest();
 
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
-                return NotFound();
+            var parameters = new[]
+            {
+                new SqlParameter("@UserId", dto.UserId),
+                new SqlParameter("@Username", dto.Username),
+                new SqlParameter("@FirstName", dto.FirstName ?? (object)DBNull.Value),
+                new SqlParameter("@LastName", dto.LastName ?? (object)DBNull.Value),
+                new SqlParameter("@Email", dto.Email),
+                new SqlParameter("@IsActive", dto.IsActive),
+                new SqlParameter("@RoleId", dto.RoleId)
+            };
 
-            user.Username = dto.Username;
-            user.FirstName = dto.FirstName;
-            user.LastName = dto.LastName;
-            user.Email = dto.Email;
-            user.IsActive = dto.IsActive;
-            user.RoleId = dto.RoleId;
-
-            await _context.SaveChangesAsync();
+            await _context.Database.ExecuteSqlRawAsync("EXEC sp_UpdateUser @UserId, @Username, @FirstName, @LastName, @Email, @IsActive, @RoleId", parameters);
 
             return NoContent();
         }
-
 
         // DELETE: api/users/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
-                return NotFound();
+            var param = new SqlParameter("@UserId", id);
 
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
+            await _context.Database.ExecuteSqlRawAsync("EXEC sp_DeleteUser @UserId", param);
 
             return NoContent();
-        }
-
-        private bool UserExists(int id)
-        {
-            return _context.Users.Any(e => e.UserId == id);
         }
     }
 }

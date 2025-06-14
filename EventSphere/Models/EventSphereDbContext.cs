@@ -1,49 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using EventSphere.ViewModels;
 
 namespace EventSphere.Models;
 
 public partial class EventSphereDbContext : DbContext
 {
-    public EventSphereDbContext()
-    {
-    }
+    public EventSphereDbContext() { }
 
     public EventSphereDbContext(DbContextOptions<EventSphereDbContext> options)
-        : base(options)
-    {
-    }
+        : base(options) { }
 
     public virtual DbSet<Address> Addresses { get; set; }
-
     public virtual DbSet<Event> Events { get; set; }
-
     public virtual DbSet<EventRegistration> EventRegistrations { get; set; }
-
     public virtual DbSet<EventStatus> EventStatuses { get; set; }
-
     public virtual DbSet<EventType> EventTypes { get; set; }
-
     public virtual DbSet<Feedback> Feedbacks { get; set; }
-
     public virtual DbSet<Notification> Notifications { get; set; }
-
     public virtual DbSet<Organization> Organizations { get; set; }
-
     public virtual DbSet<OrganizationMember> OrganizationMembers { get; set; }
-
     public virtual DbSet<OrganizerContact> OrganizerContacts { get; set; }
-
     public virtual DbSet<Role> Roles { get; set; }
-
     public virtual DbSet<Seat> Seats { get; set; }
-
     public virtual DbSet<Task> Tasks { get; set; }
-
     public virtual DbSet<TaskStatus> TaskStatuses { get; set; }
-
     public virtual DbSet<User> Users { get; set; }
+
+    // DTO'lar için DbSet tanımı
+    public virtual DbSet<UserDto> UserDtos { get; set; } = null!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
@@ -51,6 +37,8 @@ public partial class EventSphereDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<UserDto>().HasNoKey().ToView(null);
+
         modelBuilder.Entity<Address>(entity =>
         {
             entity.HasKey(e => e.AddressId).HasName("PK__Addresse__091C2A1B823CE993");

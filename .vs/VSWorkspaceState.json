@@ -3,6 +3,8 @@
     "",
     "\\EventSphere",
     "\\EventSphere\\Controllers",
+    "\\EventSphere\\Models",
+    "\\EventSphere\\ViewModels",
     "\\EventSphere\\wwwroot",
     "\\frontend",
     "\\frontend\\src",
