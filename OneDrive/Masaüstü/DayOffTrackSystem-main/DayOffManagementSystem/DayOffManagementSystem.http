@@ -1,0 +1,6 @@
+@DayOffManagementSystem_HostAddress = http://localhost:5147
+
+GET {{DayOffManagementSystem_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

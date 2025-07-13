@@ -1,0 +1,129 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\DayOffTrackSystem-main\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0C2D8ABB-69EE-4F97-8B1D-2779023D4BEB}|DayOffManagementSystem\\DayOff.API.csproj|c:\\users\\thsnf\\onedrive\\masa\u00FCst\u00FC\\dayofftracksystem-main\\dayoffmanagementsystem\\controllers\\dayofftypescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0C2D8ABB-69EE-4F97-8B1D-2779023D4BEB}|DayOffManagementSystem\\DayOff.API.csproj|solutionrelative:dayoffmanagementsystem\\controllers\\dayofftypescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3DD5AF6F-F8F4-4985-80A9-33FC5D6B9768}|DayOff.Persistence\\DayOff.Persistence.csproj|c:\\users\\thsnf\\onedrive\\masa\u00FCst\u00FC\\dayofftracksystem-main\\dayoff.persistence\\context\\dayoffdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3DD5AF6F-F8F4-4985-80A9-33FC5D6B9768}|DayOff.Persistence\\DayOff.Persistence.csproj|solutionrelative:dayoff.persistence\\context\\dayoffdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3DD5AF6F-F8F4-4985-80A9-33FC5D6B9768}|DayOff.Persistence\\DayOff.Persistence.csproj|c:\\users\\thsnf\\onedrive\\masa\u00FCst\u00FC\\dayofftracksystem-main\\dayoff.persistence\\entities\\newfolder\\vw_dayofftypewithgender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3DD5AF6F-F8F4-4985-80A9-33FC5D6B9768}|DayOff.Persistence\\DayOff.Persistence.csproj|solutionrelative:dayoff.persistence\\entities\\newfolder\\vw_dayofftypewithgender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F9DD778E-8EF6-4E4E-AB80-EA51AFC64121}|DayOff.Application\\DayOff.Application.csproj|c:\\users\\thsnf\\onedrive\\masa\u00FCst\u00FC\\dayofftracksystem-main\\dayoff.application\\dtos\\dayofftypes\\dayofftypedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F9DD778E-8EF6-4E4E-AB80-EA51AFC64121}|DayOff.Application\\DayOff.Application.csproj|solutionrelative:dayoff.application\\dtos\\dayofftypes\\dayofftypedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3DD5AF6F-F8F4-4985-80A9-33FC5D6B9768}|DayOff.Persistence\\DayOff.Persistence.csproj|c:\\users\\thsnf\\onedrive\\masa\u00FCst\u00FC\\dayofftracksystem-main\\dayoff.persistence\\repositories\\dayofftyperepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3DD5AF6F-F8F4-4985-80A9-33FC5D6B9768}|DayOff.Persistence\\DayOff.Persistence.csproj|solutionrelative:dayoff.persistence\\repositories\\dayofftyperepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:3:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Vw_DayOffTypeWithGender.cs",
+              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\DayOffTrackSystem-main\\DayOff.Persistence\\Entities\\NewFolder\\Vw_DayOffTypeWithGender.cs",
+              "RelativeDocumentMoniker": "DayOff.Persistence\\Entities\\NewFolder\\Vw_DayOffTypeWithGender.cs",
+              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\DayOffTrackSystem-main\\DayOff.Persistence\\Entities\\NewFolder\\Vw_DayOffTypeWithGender.cs",
+              "RelativeToolTip": "DayOff.Persistence\\Entities\\NewFolder\\Vw_DayOffTypeWithGender.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAkwBsAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-13T11:31:16.973Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DayOffDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\DayOffTrackSystem-main\\DayOff.Persistence\\Context\\DayOffDbContext.cs",
+              "RelativeDocumentMoniker": "DayOff.Persistence\\Context\\DayOffDbContext.cs",
+              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\DayOffTrackSystem-main\\DayOff.Persistence\\Context\\DayOffDbContext.cs",
+              "RelativeToolTip": "DayOff.Persistence\\Context\\DayOffDbContext.cs",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAIwFcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-13T11:30:04.446Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DayOffTypeDto.cs",
+              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\DayOffTrackSystem-main\\DayOff.Application\\DTOs\\DayOffTypes\\DayOffTypeDto.cs",
+              "RelativeDocumentMoniker": "DayOff.Application\\DTOs\\DayOffTypes\\DayOffTypeDto.cs",
+              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\DayOffTrackSystem-main\\DayOff.Application\\DTOs\\DayOffTypes\\DayOffTypeDto.cs",
+              "RelativeToolTip": "DayOff.Application\\DTOs\\DayOffTypes\\DayOffTypeDto.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA4AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-13T11:02:32.463Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DayOffTypesController.cs",
+              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\DayOffTrackSystem-main\\DayOffManagementSystem\\Controllers\\DayOffTypesController.cs",
+              "RelativeDocumentMoniker": "DayOffManagementSystem\\Controllers\\DayOffTypesController.cs",
+              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\DayOffTrackSystem-main\\DayOffManagementSystem\\Controllers\\DayOffTypesController.cs",
+              "RelativeToolTip": "DayOffManagementSystem\\Controllers\\DayOffTypesController.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAQwBoAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-13T10:59:16.295Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DayOffTypeRepository.cs",
+              "DocumentMoniker": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\DayOffTrackSystem-main\\DayOff.Persistence\\Repositories\\DayOffTypeRepository.cs",
+              "RelativeDocumentMoniker": "DayOff.Persistence\\Repositories\\DayOffTypeRepository.cs",
+              "ToolTip": "C:\\Users\\thsnf\\OneDrive\\Masa\u00FCst\u00FC\\DayOffTrackSystem-main\\DayOff.Persistence\\Repositories\\DayOffTypeRepository.cs",
+              "RelativeToolTip": "DayOff.Persistence\\Repositories\\DayOffTypeRepository.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAAwBUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-13T11:03:57.876Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 1111,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
